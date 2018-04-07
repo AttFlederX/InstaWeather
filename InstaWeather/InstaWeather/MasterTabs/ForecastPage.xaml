@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="InstaWeather.ForecastPage">
+    <ContentPage.Content>
+        <AbsoluteLayout>
+            <ListView x:Name="masterListView" SeparatorVisibility="Default" SeparatorColor="Aqua" HasUnevenRows="True"
+                      AbsoluteLayout.LayoutBounds="0, 0, 1, 1" AbsoluteLayout.LayoutFlags="All"
+                      IsPullToRefreshEnabled="True" Refreshing="MasterListView_Refreshing"
+                      ItemsSource="{Binding Path=Forecast.DailyForecast}" IsGroupingEnabled="True" ItemSelected="MasterListView_ItemSelected">
+                <!--IsPullToRefreshEnabled="True" Refreshing="MasterListView_Refreshing">-->
+
+                <ListView.GroupHeaderTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <AbsoluteLayout>
+                                <BoxView BackgroundColor="#42b0f4"
+                                         AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
+                                         AbsoluteLayout.LayoutFlags="All" />
+                                <Label Text="{Binding Date}" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"
+                                       TextColor="White" FontSize="16" FontAttributes="Bold"
+                                       AbsoluteLayout.LayoutBounds="0.5, 0.5, 1, 1"
+                                       AbsoluteLayout.LayoutFlags="All" />
+                            </AbsoluteLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.GroupHeaderTemplate>
+                
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <AbsoluteLayout Padding="5">
+                                <Label FontSize="18" VerticalOptions="Center" Text="{Binding UpdateTimeString}"
+                                       AbsoluteLayout.LayoutBounds="0, 0, 0.25, 1" AbsoluteLayout.LayoutFlags="All" />
+
+                                <StackLayout AbsoluteLayout.LayoutBounds="0.9, 0, 0.8, 1" AbsoluteLayout.LayoutFlags="All">
+                                    <AbsoluteLayout>
+                                        <Image VerticalOptions="Center" Source="{Binding IconPath}" WidthRequest="48" HeightRequest="48"
+                                               AbsoluteLayout.LayoutBounds="0, 0, 0.2, 1" AbsoluteLayout.LayoutFlags="All" />
+                                        <Label VerticalOptions="Center" FontSize="18" Text="{Binding Description}" 
+                                               AbsoluteLayout.LayoutBounds="0.45, 0, 0.5, 1" AbsoluteLayout.LayoutFlags="All" />
+                                        <Label VerticalOptions="Center" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="End" 
+                                               FontSize="26" Text="{Binding TemperatureString}" 
+                                               AbsoluteLayout.LayoutBounds="1, 0, 0.25, 1" AbsoluteLayout.LayoutFlags="All"/>
+                                    </AbsoluteLayout>
+
+                                    <Grid HorizontalOptions="StartAndExpand">
+                                        <Label Grid.Row="0" Grid.Column="0" Text="{Binding PressureString, StringFormat='Pressure: {0}'}" />
+                                        <Label Grid.Row="0" Grid.Column="1" Text="{Binding Humidity, StringFormat='Humidity: {0}%'}" />
+                                        <Label Grid.Row="1" Grid.Column="0" Text="{Binding WindString, StringFormat='Wind: {0}'}" />
+                                        <Label Grid.Row="1" Grid.Column="1" Text="{Binding CloudCoverage, StringFormat='Cloud coverage: {0}%'}" />
+                                    </Grid>
+                                </StackLayout>
+
+                            </AbsoluteLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+            <!--Loading splash screen-->
+            <BoxView x:Name="loadingBoxView" BackgroundColor="#333333" IsVisible="{Binding IsLoading}"
+                     AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
+                     AbsoluteLayout.LayoutFlags="All" />
+
+            <ActivityIndicator x:Name="loadingAcitvityIndicator" IsRunning="True" IsVisible="{Binding IsLoading}" Color="#00b0ba"
+                               AbsoluteLayout.LayoutBounds="0.5, 0.5, 100, 100"
+                               AbsoluteLayout.LayoutFlags="PositionProportional" />
+
+        </AbsoluteLayout>
+    </ContentPage.Content>
+</ContentPage>

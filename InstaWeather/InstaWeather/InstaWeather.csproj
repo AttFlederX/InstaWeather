@@ -1,0 +1,77 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Images\01d.png" />
+    <None Remove="Images\01n.png" />
+    <None Remove="Images\02d.png" />
+    <None Remove="Images\02n.png" />
+    <None Remove="Images\03d.png" />
+    <None Remove="Images\03n.png" />
+    <None Remove="Images\04d.png" />
+    <None Remove="Images\04n.png" />
+    <None Remove="Images\09d.png" />
+    <None Remove="Images\09n.png" />
+    <None Remove="Images\10d.png" />
+    <None Remove="Images\10n.png" />
+    <None Remove="Images\11d.png" />
+    <None Remove="Images\11n.png" />
+    <None Remove="Images\13d.png" />
+    <None Remove="Images\13n.png" />
+    <None Remove="Images\50d.png" />
+    <None Remove="Images\50n.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Images\01d.png" />
+    <EmbeddedResource Include="Images\01n.png" />
+    <EmbeddedResource Include="Images\02d.png" />
+    <EmbeddedResource Include="Images\02n.png" />
+    <EmbeddedResource Include="Images\03d.png" />
+    <EmbeddedResource Include="Images\03n.png" />
+    <EmbeddedResource Include="Images\04d.png" />
+    <EmbeddedResource Include="Images\04n.png" />
+    <EmbeddedResource Include="Images\09d.png" />
+    <EmbeddedResource Include="Images\09n.png" />
+    <EmbeddedResource Include="Images\10d.png" />
+    <EmbeddedResource Include="Images\10n.png" />
+    <EmbeddedResource Include="Images\11d.png" />
+    <EmbeddedResource Include="Images\11n.png" />
+    <EmbeddedResource Include="Images\13d.png" />
+    <EmbeddedResource Include="Images\13n.png" />
+    <EmbeddedResource Include="Images\50d.png" />
+    <EmbeddedResource Include="Images\50n.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.CSharp" Version="4.4.1" />
+    <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
+    <PackageReference Include="System.Dynamic.Runtime" Version="4.3.0" />
+    <PackageReference Include="Xam.Plugin.Geolocator" Version="4.2.0" />
+    <PackageReference Include="Xamarin.Forms" Version="2.5.0.280555" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Condition=" '$(EnableDefaultCompileItems)' == 'true' " Update="App.xaml.cs">
+      <DependentUpon>*.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="MasterTabs\CurrentWeatherPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="MasterTabs\ForecastPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="MasterTabbedPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="SettingsPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+</Project>
